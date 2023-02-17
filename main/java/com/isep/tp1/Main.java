@@ -1,7 +1,16 @@
 package com.isep.tp1;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
+public static boolean isBinarySumInArray(int[] integers, int val) {
+        Set<Integer> seen = new HashSet<>();
+
+        for (int i : integers) {
+        if (seen.contains(val - i)) {
+        return true;
+        }
+        seen.add(i);
+        }
+
+        return false;
+        }
+
 }
