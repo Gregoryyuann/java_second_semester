@@ -16,7 +16,7 @@
             <Image url="@L.jpg" />
          </image>
       </ImageView>
-        <ImageView fx:id="enemyImageView" fitHeight="200.0" fitWidth="200.0" layoutX="36.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="enemyImageView" fitHeight="200.0" fitWidth="200.0" layoutX="35.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Troll.png" />
             </image>
@@ -26,12 +26,12 @@
                 <Image url="@Wizard.png" />
             </image>
         </ImageView>
-      <ImageView fitHeight="222.0" fitWidth="226.0" layoutX="169.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="222.0" fitWidth="226.0" layoutX="203.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Frame.png" />
          </image>
       </ImageView>
-        <HBox layoutX="182.0" layoutY="283.0" spacing="10.0">
+        <HBox layoutX="223.0" layoutY="294.0" spacing="10.0">
             <ImageView fx:id="potionImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@Potion.png" />
@@ -63,8 +63,10 @@
                 <Button fx:id="headAttackButton" text="Head" />
             </HBox>
         </VBox>
-        <HBox layoutX="58.0" layoutY="390.0" prefHeight="34.0" prefWidth="117.0" fx:id="nextLevelOptionBox">
+      <HBox fx:id="nextLevelOptionBox" layoutX="58.0" layoutY="390.0" prefHeight="34.0" prefWidth="117.0">
+         <children>
             <Button fx:id="NextLevelButton" mnemonicParsing="false" text="Go Next" onAction="#onStartButtonClick"/>
-        </HBox>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

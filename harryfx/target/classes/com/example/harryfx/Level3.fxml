@@ -9,23 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.harryfx.Level2Controller">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.harryfx.Level3Controller">
     <children>
-
-        <Label fx:id="houseHintLabel" layoutX="218.0" layoutY="39.0" prefHeight="112.0" prefWidth="176.0" textFill="#fc3636">
-         <font>
-            <Font size="30.0" />
-         </font></Label>
-
-
-        <ImageView fitHeight="470.0" fitWidth="624.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="470.0" fitWidth="624.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@L.jpg" />
             </image>
         </ImageView>
         <ImageView fx:id="enemyImageView" fitHeight="200.0" fitWidth="200.0" layoutX="36.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@basilic.png" />
+                <Image url="@Détraqueurs.png" />
             </image>
         </ImageView>
         <ImageView fx:id="playerImageView" fitHeight="200.0" fitWidth="200.0" layoutX="437.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
@@ -67,11 +60,22 @@
             <Label text="Choose Attack Type:" />
             <HBox spacing="10.0">
                 <Button fx:id="bodyAttackButton" text="Body" />
-                <Button fx:id="headAttackButton" text="fangs" />
+                <Button fx:id="headAttackButton" text="Head" />
             </HBox>
         </VBox>
         <HBox fx:id="nextLevelOptionBox" layoutX="58.0" layoutY="390.0" prefHeight="34.0" prefWidth="117.0">
             <Button fx:id="NextLevelButton" mnemonicParsing="false" onAction="#onStartButtonClick" text="Go Next" />
         </HBox>
+      <VBox fx:id="specialOptionBox" layoutX="379.0" layoutY="381.0" prefHeight="86.0" prefWidth="222.0">
+         <children>
+            <HBox prefHeight="61.0" prefWidth="160.0">
+               <children>
+                  <Button fx:id="ExpectroPatronumButton" mnemonicParsing="false" text="ExpectroPatronum" />
+                  <Button fx:id="AlohomoraButton" mnemonicParsing="false" text="Alohomora" />
+               </children>
+            </HBox>
+            <Label text="              You got a special option!" textFill="#f5dddd" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

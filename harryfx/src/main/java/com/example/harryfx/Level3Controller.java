@@ -7,21 +7,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class Level2Controller {
-
+public class Level3Controller {
     @FXML
     private ImageView enemyImageView;
     @FXML
@@ -37,29 +34,30 @@ public class Level2Controller {
     @FXML
     private VBox attackOptionsBox;
     @FXML
+    private VBox specialOptionBox;
+    @FXML
     private HBox nextLevelOptionBox;
+
     @FXML
     private Button bodyAttackButton;
     @FXML
     private Button headAttackButton;
     @FXML
     private Button NextLevelButton;
+
     @FXML
-    private  Label houseHintLabel;
+    private Button ExpectroPatronumButton;
+
+    @FXML
+    private Button AlohomoraButton;
 
     private int enemyHealth;
     private int playerHealth;
 
     private boolean isPlayerTurn;
 
-    private String playerHouse;
-
-    private int damageIncrease; // 伤害增加值
-
-
-
     @FXML
-    void initialize() {
+    private void initialize() {
         enemyHealth = 100;
         playerHealth = 100;
 
@@ -69,6 +67,7 @@ public class Level2Controller {
         attackOptionsBox.setVisible(false); // 初始隐藏攻击选项框
 
         NextLevelButton.setVisible(false);
+        specialOptionBox.setVisible(false);
 
         expelliarmusImageView.setOnMouseClicked(event -> showAttackOptions("Expelliarmus"));
         stupefyImageView.setOnMouseClicked(event -> showAttackOptions("Stupefy"));
@@ -76,35 +75,14 @@ public class Level2Controller {
         bodyAttackButton.setOnAction(event -> handleAttack("body"));
         headAttackButton.setOnAction(event -> handleAttack("head"));
 
+        ExpectroPatronumButton.setOnAction(event -> optionChoise("Expectro Patronum"));
+        AlohomoraButton.setOnAction(event -> optionChoise(" Alohomora"));
+
+
+
         isPlayerTurn = true;
 
-        Level2Controller level2Controller = ControllerMediator.getLevel2Controller();
-        if (level2Controller != null) {
-            String house = level2Controller.getPlayerHouse();
-            if (house.equals("Gryffindor")) {
-                houseHintLabel.setText("Damage increased for Gryffindor!");
-            } else {
-                houseHintLabel.setText("");
-            }
-        }
-
     }
-
-    public String getPlayerHouse() {
-        return playerHouse;
-    }
-
-
-
-    public void setPlayerHouse(String house) {
-        this.playerHouse = house;
-        if (house.equals("Gryffindor")) {
-            damageIncrease = 10; // 如果玩家家族是Gryffindor，增加10点伤害
-        } else {
-            damageIncrease = 0; // 其他家族不增加伤害
-        }
-    }
-
 
 
     private void showAttackOptions(String spell) {
@@ -119,17 +97,14 @@ public class Level2Controller {
 
     private void handleAttack(String attackType) {
         if (isPlayerTurn) {
-            int baseDamage = 0;
+            int damage = 0;
             if (attackType.equals("body")) {
-                baseDamage = 10;
+                damage = 10;
             } else if (attackType.equals("head")) {
                 if (Math.random() >= 0.4) {
-                    baseDamage = 20;
+                    damage = 20;
                 }
             }
-
-            int damage = baseDamage + damageIncrease;
-
             if (damage > 0) {
                 enemyHealth -= damage;
                 if (enemyHealth < 0) {
@@ -138,6 +113,7 @@ public class Level2Controller {
                 enemyHealthLabel.setText("Enemy Health: " + enemyHealth);
                 checkWinCondition();
                 setNextLevelOptionBox();
+                specialOption();
                 isPlayerTurn = false;
             }
         }
@@ -153,6 +129,7 @@ public class Level2Controller {
         playerHealthLabel.setText("Player Health: " + playerHealth);
         checkWinCondition();
         setNextLevelOptionBox();
+        specialOption();
         isPlayerTurn = true;
     }
 
@@ -168,6 +145,26 @@ public class Level2Controller {
         }
     }
 
+
+    private void optionChoise(String spellchoise){
+        if (spellchoise.equals("Expectro Patronum")){
+            System.out.println("You defeated him completely and he escaped");
+            enemyHealth -=20;
+            setNextLevelOptionBox();
+
+        }
+        else {
+            System.out.println("He was not afraid of you, he chose to die with you and you failed");
+        }
+
+    }
+
+    private void specialOption(){
+        if (enemyHealth <= 20){
+            System.out.println("you got a special Option!");
+            specialOptionBox.setVisible(true);
+        }
+    }
 
     private void setNextLevelOptionBox() {
         if (playerHealth <= 0 || enemyHealth <= 0) {
