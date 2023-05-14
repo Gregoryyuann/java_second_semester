@@ -1,6 +1,7 @@
 package com.example.harryfx;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -138,9 +139,19 @@ public class Level2Controller {
                 enemyHealthLabel.setText("Enemy Health: " + enemyHealth);
                 checkWinCondition();
                 setNextLevelOptionBox();
+                animateCharacter();
                 isPlayerTurn = false;
             }
         }
+    }
+    private void animateCharacter() {
+        // 创建TranslateTransition对象，设置平移动画属性
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), playerImageView);
+        translateTransition.setFromX(0); // 设置起始X坐标为0
+        translateTransition.setToX(-100); // 设置终点X坐标为100
+        translateTransition.setAutoReverse(true); // 设置自动反向动画
+        translateTransition.setCycleCount(2); // 设置动画循环次数为2
+        translateTransition.play(); // 播放动画
     }
 
 
